@@ -3,9 +3,11 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-import asyncio
+from discord.voice_client import VoiceClient
 import time
 import sys
+import random
+import selenium
 
 print("Discord version: %s" % discord.__version__)
 
@@ -17,10 +19,25 @@ def read_token():
 TOKEN = read_token()
 bot = commands.Bot(command_prefix = "!")
 
+class Main_commands():
+	def __init__(self, bot):
+		self.bot = bot
+
+@bot.event
+async def on_ready():
+	print("ready\n")
 
 @bot.command()
 async def ping():
-	await bot.say("Pong")
+	""" Pong! """
+	before = time.monotonic()
+	message = await bot.say("Pong!")
+	ping = (time.monotonic() - before) * 1000
+	await bot.say("This took " + str(ping) + " ms")
+
+@bot.command()
+async def play(song):
+	pass
 
 @bot.command()
 async def echo(*message):
@@ -32,6 +49,12 @@ async def echo(*message):
 
 
 """
+try:
+	bot.load_extension("Music")
+except Exception as e:
+	print("lol")
+
+
 async def on_message(message):
 	if message.content.upper().startswith("!PING"):
 		userID = message.author.id
