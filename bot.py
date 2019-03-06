@@ -7,7 +7,8 @@ from discord.voice_client import VoiceClient
 import time
 import sys
 import random
-import selenium
+import requests
+import json
 
 print("Discord version: %s" % discord.__version__)
 
@@ -17,6 +18,7 @@ def read_token():
 		return lines[0].strip()
 
 TOKEN = read_token()
+
 bot = commands.Bot(command_prefix = "!")
 
 class Main_commands():
@@ -46,7 +48,6 @@ async def echo(*message):
 		output += word
 		output += " "
 	await bot.say(output)
-
 
 """
 try:
