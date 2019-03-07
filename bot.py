@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 
-import aiohttp
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
-from discord.voice_client import VoiceClient
 import time
 import sys
 import random
@@ -15,7 +13,7 @@ import io
 print("Discord version: %s" % discord.__version__)
 
 def read_token():
-	with open("token.txt", "r") as f:
+	with open("files/token.txt", "r") as f:
 		lines = f.readlines()
 		return lines[0].strip()
 
@@ -34,21 +32,6 @@ def get_channel(channels, channel_name):
             return channel
     return None
 
-@bot.command(pass_context = True)
-async def porn(ctx):
-        await bot.say("fuk me daddy") 
-        await bot.send_file(ctx.message.channel, open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb"))
-#        with io.BytesIO(open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb")) as f:
-#                f.name = file_name
-#                img = Image.open(f)
-
-#        with io.BytesIO() as f:
-#                f.name = file_name
-#                img.save(f)
-#                f.seek(0)
-#                await bot.send_file(m.channel, f)
-
-
 @bot.event
 async def on_ready():
 	print("ready\n")
@@ -61,9 +44,13 @@ async def ping():
 	ping = (time.monotonic() - before) * 1000
 	await bot.say("This took " + str(ping) + " ms")
 
-@bot.command()
-async def play(song):
-	pass
+@bot.command(pass_context = True)
+async def pepe(ctx):
+	await bot.send_file(ctx.message.channel, open("images/dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb"))
+
+@bot.command(pass_context = True)
+async def gif(ctx):
+        await bot.send_file(ctx.message.channel, open("images/a.gif", "rb"))
 
 @bot.command()
 async def echo(*message):
