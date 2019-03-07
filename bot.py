@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import aiohttp
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
@@ -9,6 +10,7 @@ import sys
 import random
 import requests
 import json
+import io
 
 print("Discord version: %s" % discord.__version__)
 
@@ -32,11 +34,20 @@ def get_channel(channels, channel_name):
             return channel
     return None
 
-@bot.command()
-async def porn():
-        await bot.say("fuk me daddy")
-        await bot.send_file(get_channel(bot.get_all_channels(),channel_name="general", open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "r")
-	pass
+@bot.command(pass_context = True)
+async def porn(ctx):
+        await bot.say("fuk me daddy") 
+        await bot.send_file(ctx.message.channel, open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb"))
+#        with io.BytesIO(open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb")) as f:
+#                f.name = file_name
+#                img = Image.open(f)
+
+#        with io.BytesIO() as f:
+#                f.name = file_name
+#                img.save(f)
+#                f.seek(0)
+#                await bot.send_file(m.channel, f)
+
 
 @bot.event
 async def on_ready():
