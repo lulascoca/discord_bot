@@ -25,6 +25,19 @@ class Main_commands():
 	def __init__(self, bot):
 		self.bot = bot
 
+def get_channel(channels, channel_name):
+    for channel in bot.get_all_channels():
+        print(channel)
+        if channel.name == channel_name:
+            return channel
+    return None
+
+@bot.command()
+async def porn():
+        await bot.say("fuk me daddy")
+        await bot.send_file(get_channel(bot.get_all_channels(),channel_name="general", open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "r")
+	pass
+
 @bot.event
 async def on_ready():
 	print("ready\n")
@@ -50,18 +63,12 @@ async def echo(*message):
 	await bot.say(output)
 
 """
-try:
-	bot.load_extension("Music")
-except Exception as e:
-	print("lol")
-
-
-async def on_message(message):
-	if message.content.upper().startswith("!PING"):
-		userID = message.author.id
-		await bot.send_message(message.channel, "<@%s> Pong!" % (userID))
-	elif message.content.startswith("cookie"):
-		await bot.send_message(message.channel, ":cookie:")
+@bot.command()
+async def porn():
+	await bot.say("fuk me daddy")
+	with open("dank_pepe_or_nah_by_sheepjesus-d9khyt8.png", "rb") as pic:
+		await bot.send_file(get_channel(bot.get_all_channels(),channel_name="general", pic)
 """
+
 bot.run(TOKEN)
 
