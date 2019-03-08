@@ -57,7 +57,7 @@ async def weather(ctx, name="", id=0):
 		m = ls[0]
 		main = m["main"]
 		temp = main["temp"]
-		await bot.say("The currnet temperature in " + name + " is currently " + str(temp))
+		await bot.say("The current temperature in " + name + " is currently " + str(temp))
 
 # basic ping command
 @bot.command()
