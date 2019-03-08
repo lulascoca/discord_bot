@@ -45,19 +45,35 @@ async def on_ready():
 	print("ready\n")
 
 @bot.command(pass_context = True)
-async def weather(ctx, name="", id=0):
-	a = r.search_city(name, id)
+async def weather(ctx, name="", units="metric"):
+	a = r.search_city(name)
 	print(str(a))
 	if a == None:
 		await bot.say("Couldn't find that place sry m8 :heart:")
 	else:
-		weath = r.get_weather(a)
-		print(weath)
-		ls = weath["list"]
-		m = ls[0]
-		main = m["main"]
-		temp = main["temp"]
-		await bot.say("The current temperature in " + name + " is currently " + str(temp))
+		#print(weath)
+		if units == "metric":
+			weath = r.get_weather(a, units)
+			ls = weath["list"]
+			m = ls[0]
+			main = m["main"]
+			temp = main["temp"]
+			cond = m["weather"]
+			cond1 = cond[0]
+			cond2 = cond1["main"]
+			await bot.say("The condition in " + name + " is currently: ```" + cond2 + "```" "\nThe current temperature is: " + str(temp) + "ºC")
+		elif units == "imperial":
+			weath = r.get_weather(a, units)
+			ls = weath["list"]
+			m = ls[0]
+			main = m["main"]
+			temp = main["temp"]
+			cond = m["weather"]
+			cond1 = cond[0]
+			cond2 = cond1["main"]
+			await bot.say("The condition in " + name + " is currently: ```" + cond2 + "```" "\nThe current temperature is: " + str(temp) + "ºF")	
+		else:
+			await bot.say("You entered an invalid unit type, choose either 'metric' or 'imperial'")
 
 # basic ping command
 @bot.command()

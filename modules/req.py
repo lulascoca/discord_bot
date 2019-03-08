@@ -31,12 +31,25 @@ def search_city(name="", id=0):
 	except Exception as e:
 		print("unable to locate city/place")
 
-def get_weather(a):
-	url = ("http://api.openweathermap.org/data/2.5/forecast?id=" + str(a) + "&APPID=0c0f9be83b03974dc0e892436eaa9a13" + "&units=metric")
-	print(url)
-	with urllib.request.urlopen(url) as url_:
-		data = json.loads(url_.read().decode())
+def get_weather(a, units="metric"):
+	if units == "metric":
+		unit = "metric"
+		url = ("http://api.openweathermap.org/data/2.5/forecast?id=" + str(a) + "&APPID=0c0f9be83b03974dc0e892436eaa9a13" + "&units=" + unit)
+		print(url)
+		r = requests.get(url)
+		data = r.json()
 		return data
+	elif units == "imperial":
+		unit = "imperial"
+		url = ("http://api.openweathermap.org/data/2.5/forecast?id=" + str(a) + "&APPID=0c0f9be83b03974dc0e892436eaa9a13" + "&units=" + unit)
+		print(url)
+		r = requests.get(url)
+		data = r.json()
+		return data
+	else:
+		pass
+		return None
+	
 
 """
 print(r.status_code)
