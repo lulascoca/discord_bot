@@ -1,2 +1,6 @@
 #discord_bot
-This is my attempt at making a discord bot lol im nub :))
+
+I jus mad dis fofun
+Dnt judge my spagheti code
+And I still dnt have fucking hidden my token propperly so dnt 
+take it lol it aint worth much :)
