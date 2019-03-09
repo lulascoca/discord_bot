@@ -1,6 +1,6 @@
-#discord_bot
+# **Danker_bot**
 
-I jus made dis fofun
-Dnt judge my spagheti code
-And I still dnt have fucking hidden my token propperly so dnt 
-take it lol it aint worth much :)
+_I jus made dis fofun soooooo:_
+* Dnt judge my spagheti code
+* I still dnt have fucking hidden my token propperly 
+* so dnt take it lol it aint worth much :)
