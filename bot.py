@@ -52,6 +52,7 @@ async def weather(ctx, name="", units="metric"):
 		await bot.say("Couldn't find that place sry m8 :heart:")
 	else:
 		#print(weath)
+		emoji_dict = r.get_emoji("files/icons.json")
 		if units == "metric":
 			weath = r.get_weather(a, units)
 			ls = weath["list"]
@@ -61,7 +62,8 @@ async def weather(ctx, name="", units="metric"):
 			cond = m["weather"]
 			cond1 = cond[0]
 			cond2 = cond1["main"]
-			await bot.say("The condition in " + name + " is currently: ```" + cond2 + "```" "\nThe current temperature is: " + str(temp) + "ºC")
+			cond_icon = cond1["icon"]
+			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºC")	
 		elif units == "imperial":
 			weath = r.get_weather(a, units)
 			ls = weath["list"]
@@ -71,7 +73,8 @@ async def weather(ctx, name="", units="metric"):
 			cond = m["weather"]
 			cond1 = cond[0]
 			cond2 = cond1["main"]
-			await bot.say("The condition in " + name + " is currently: ```" + cond2 + "```" "\nThe current temperature is: " + str(temp) + "ºF")	
+			cond_icon = cond1["icon"]
+			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºF")	
 		else:
 			await bot.say("You entered an invalid unit type, choose either 'metric' or 'imperial'")
 

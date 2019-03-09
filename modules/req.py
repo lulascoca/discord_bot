@@ -49,7 +49,12 @@ def get_weather(a, units="metric"):
 	else:
 		pass
 		return None
-	
+
+def get_emoji(path):
+	with open(path, "r") as file:
+		emoji_dict = json.load(file)
+		return emoji_dict
+
 
 """
 print(r.status_code)
