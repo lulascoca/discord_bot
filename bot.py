@@ -13,7 +13,6 @@ import modules.req as r
 import modules.db_connect
 import fun.gamble
 
-
 # prints the discord version
 print("Discord version: %s" % discord.__version__)
 
@@ -46,7 +45,11 @@ def get_channel(channels, channel_name):
 @bot.event
 async def on_ready():
 	print("ready\n")
-
+"""
+@bot.event
+async def on_message(message):
+    print(message.author.id)
+"""
 # send currnet weather and temperature to the current channel user is in
 @bot.command(pass_context = True)
 async def weather(ctx, name="", units="metric"):
@@ -109,6 +112,22 @@ async def echo(*message):
 		output += word
 		output += " "
 	await bot.say(output)
+
+#DATABASE ZONE
+"""
+def is_me():
+    def predicate(ctx):
+        return ctx.message.author.id == 277797942570778624
+    return commands.check(predicate)
+"""
+
+@bot.command(pass_context = True)
+#@commands.has_role(name='STAFF')
+async def assign_points(ctx, user_name, points):
+	if str(ctx.message.author.id) == str(277797942570778624):
+		await bot.say("ay")
+	else:
+		await bot.say("You dont have permission to do that m8")
 
 """
 @bot.command()
