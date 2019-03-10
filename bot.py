@@ -10,6 +10,9 @@ import requests
 import json
 import io
 import modules.req as r
+import modules.db_connect
+import fun.gamble
+
 
 # prints the discord version
 print("Discord version: %s" % discord.__version__)
@@ -44,6 +47,7 @@ def get_channel(channels, channel_name):
 async def on_ready():
 	print("ready\n")
 
+# send currnet weather and temperature to the current channel user is in
 @bot.command(pass_context = True)
 async def weather(ctx, name="", units="metric"):
 	a = r.search_city(name)
