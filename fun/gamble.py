@@ -22,7 +22,7 @@ def add_user(user_name, points = 0):
 	db.commit()
 
 def assign_points(user_name, points):
-	cur.execute("UPDATE gamble SET points = %s WHERE user_name = '%s';", (points, user_name))
+	cur.execute("UPDATE gamble SET points = %s WHERE user_name = %s;", (points, user_name,))
 	db.commit()
 
 def close_cur():
