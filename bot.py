@@ -161,9 +161,10 @@ async def points(ctx):
 
 # FINISH ME! line 36 gamble.py
 @bot.command(pass_context = True)
-async def coin_throw(ctx):
+async def coin_throw(ctx, points=1):
 	user = ctx.message.author.name
-
+	result = gb.coin_game(user, points)
+	await bot.say(result)
 
 # catches keyboardinterrupt and closes cursor safely before closing bot
 def keyboardInterruptHandler(signal, frame):

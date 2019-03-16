@@ -33,7 +33,7 @@ def return_points(user_name):
 	curr_points = a[0][2]
 	return curr_points
 
-# NOT FINISHED LINE 162 bot.py
+# coin throw game
 def coin_game(user_name, bet_points):
 	cur.execute("SELECT * FROM gamble where user_name = %s;", (user_name,))
 	a = cur.fetchall()
@@ -46,15 +46,15 @@ def coin_game(user_name, bet_points):
 			points = current_points + bet_points
 			cur.execute("UPDATE gamble SET points = %s WHERE user_name = %s;", (str(points), user_name,))
 			db.commit()
-			return points
+			return("You won! You now have " + str(points) + " points.")
 		else:
 			current_points = a[0][2]
 			points = current_points - bet_points
 			cur.execute("UPDATE gamble SET points = %s WHERE user_name = %s;", (str(points), user_name,))
 			db.commit()
-			return points
+			return("You lost! You now have " + str(points) + " points.")
 	else:
-		return 0
+		return("You don't have enough points to bet rn with that ammount try a lower one or if you don't have more points ask a mod to give you some")
 
 def close_cur():
 	cur.close()	
