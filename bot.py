@@ -72,7 +72,7 @@ async def weather(ctx, name="", units="metric"):
 			cond1 = cond[0]
 			cond2 = cond1["main"]
 			cond_icon = cond1["icon"]
-			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºC")	
+			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºC")
 		elif units == "imperial":
 			weath = r.get_weather(a, units)
 			ls = weath["list"]
@@ -83,7 +83,7 @@ async def weather(ctx, name="", units="metric"):
 			cond1 = cond[0]
 			cond2 = cond1["main"]
 			cond_icon = cond1["icon"]
-			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºF")	
+			await bot.say("The condition in " + weath["city"]["name"] + " is currently: \n" + cond2 + " " + emoji_dict[cond_icon] + "\nRn the temperature is " + str(temp) + "ºF")
 		else:
 			await bot.say("You entered an invalid unit type, choose either 'metric' or 'imperial'")
 
@@ -136,7 +136,7 @@ async def create_user(ctx):
 			else:
 				a = 0
 	if a == 1:
-		await bot.say("You already have a user created go gamble! :)")		
+		await bot.say("You already have a user created go gamble! :)")
 	else:
 		gb.add_user(ctx.message.author.name)
 		print("user created in db with name: %s" % ctx.message.author.name)
