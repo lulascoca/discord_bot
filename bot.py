@@ -12,9 +12,7 @@ import requests
 import json
 import io
 import modules.req as r
-import modules.db_connect
 import modules.twitch_get
-import fun.gamble as gb
 
 # prints the discord version
 print("Discord version: %s" % discord.__version__)
@@ -116,62 +114,14 @@ async def echo(*message):
 		output += " "
 	await bot.say(output)
 
-#DATABASE ZONE comment this part out ifno database is set up
-"""
-def is_me():
-    def predicate(ctx):
-        return ctx.message.author.id == 277797942570778624
-    return commands.check(predicate)
-"""
-
-@bot.command(pass_context = True)
-async def create_user(ctx):
-	names = gb.return_names()
-	print(names)
-	if names == []:
-		a = 0
-	else:
-		for name in names:
-			if ctx.message.author.name == name:
-				a = 1
-			else:
-				a = 0
-	if a == 1:
-		await bot.say("You already have a user created go gamble! :)")
-	else:
-		gb.add_user(ctx.message.author.name)
-		print("user created in db with name: %s" % ctx.message.author.name)
-		await bot.say("User created with your name! Go gamble! :)")
-
-# assigns points directly to a user
-@bot.command(pass_context = True)
-#@commands.has_role(name='STAFF')
-async def assign_points(ctx, user_name, points):
-	if str(ctx.message.author.id) == str(277797942570778624):
-		gb.assign_points(user_name, points)
-		await bot.say("Assigned " + points + " points to " + user_name)
-	else:
-		await bot.say("You dont have permission to do that m8")
-
-# returns points of the user who executed the command
-@bot.command(pass_context = True)
-async def points(ctx):
-	user = ctx.message.author.name
-	points = gb.return_points(user)
-	await bot.say(user + ", currently you have " + str(points) + " points.")
-
-# FINISH ME! line 36 gamble.py
-@bot.command(pass_context = True)
-async def coin_throw(ctx, points=1):
-	user = ctx.message.author.name
-	result = gb.coin_game(user, points)
-	await bot.say(result)
+@bot.command()
+async def streams():
+	twitch_get.
 
 # catches keyboardinterrupt and closes cursor safely before closing bot
 def keyboardInterruptHandler(signal, frame):
     print("KeyboardInterrupt (ID: {}) has been caught. Cleaning up...".format(signal))
-    gb.close_cur()
-    print("Closed cursor")
+    #print("Closed cursor")
     exit(0)
 
 signal.signal(signal.SIGINT, keyboardInterruptHandler)
