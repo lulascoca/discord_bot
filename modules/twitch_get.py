@@ -1,14 +1,27 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 
 import requests
 import json
 import sys
 
-id = "494717"
-url = ("https://api.twitch.tv/helix/streams")
+"""game = requests.get("https://api.twitch.tv/helix/games", params={"name": "fortnite"}, headers={"Client-ID": "hsubli4s6848rcl50n36yc6rt1c83u"})
+game_data=game.json()
+print(game_data)"""
 
-a = requests.get(url, data={"game_id": id}, headers={"Client-ID": "hsubli4s6848rcl50n36yc6rt1c83u"})
+def get_game_id(name):
+    print(name)
+    req = requests.get("https://api.twitch.tv/helix/games", params={"name": name}, headers={"Client-ID": "hsubli4s6848rcl50n36yc6rt1c83u"})
+    req_json = req.json()
+    print(req_json)
+    return req_json["data"][0]["id"]
+
+id=get_game_id("fortnite")
+url = ("https://api.twitch.tv/helix/streams/")
+
+a = requests.get(url, params={"game_id": id}, headers={"Client-ID": "hsubli4s6848rcl50n36yc6rt1c83u"})
+print(a.json())
 b = a.json()
+#print(b)
 streamer_list = []
 
 def get_streamers():
@@ -19,6 +32,9 @@ def get_streamers():
         str_list.append(user_name)
     return str_list
 
+get_streamers()
+
+"""
 with open("a.json", "r") as f:
     c = json.load(f)
 
@@ -28,7 +44,7 @@ for i in data:
 
 with open("a.json", "w") as f:
     json.dump(b, f)
-
+"""
 """
 streamer_list=get_streamers()
 streamer_list_check=get_streamers()

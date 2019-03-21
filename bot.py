@@ -13,6 +13,7 @@ import json
 import io
 import modules.req as r
 import modules.db_connect
+import modules.twitch_get
 import fun.gamble as gb
 
 # prints the discord version
