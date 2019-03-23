@@ -116,7 +116,7 @@ async def echo(*message):
 
 @bot.command()
 async def streams():
-	twitch_get.
+	pass
 
 # catches keyboardinterrupt and closes cursor safely before closing bot
 def keyboardInterruptHandler(signal, frame):
